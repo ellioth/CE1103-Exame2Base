@@ -8,12 +8,12 @@ jobs:
   java:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Detectar proyecto Java
         id: detectar
         run: |
           if [ -f java/pom.xml ]; then echo "existe=true" >> "$GITHUB_OUTPUT"; else echo "existe=false" >> "$GITHUB_OUTPUT"; fi
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         if: steps.detectar.outputs.existe == 'true'
         with:
           distribution: temurin
@@ -27,12 +27,12 @@ jobs:
   csharp:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Detectar proyecto C#
         id: detectar
         run: |
           if [ -f csharp/Examen2.sln ]; then echo "existe=true" >> "$GITHUB_OUTPUT"; else echo "existe=false" >> "$GITHUB_OUTPUT"; fi
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v5
         if: steps.detectar.outputs.existe == 'true'
         with:
           dotnet-version: '8.x'
@@ -44,7 +44,7 @@ jobs:
   restricciones:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Verificar restricciones
         run: |
           bash scripts/verificar-restricciones.sh | tee salida.txt
